@@ -1,0 +1,83 @@
+<style>
+  .container {
+    width: 50%;
+    height: 500px;
+    margin: auto;
+  }
+  .update-container {
+    position: absolute;
+    top: 60px;
+    width: 50%;
+    height: 60%;
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
+.form {
+    float: left;
+    text-align: right;
+    width: 70%;
+    margin-top: 20px;
+}
+
+.text-area {
+    border: outset 2px black;
+}
+
+.name-input {
+    height: 20px;
+}
+
+.common {
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: ridge;
+
+}
+.esc{
+    float: right;
+    text-align: right;
+    width: 30%;
+    height: 40%;
+}
+
+.esc input{
+    margin: 10px;
+    color: red;
+    font-size: 25px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+ .update-button:hover {
+    background-color: #7F7F7F;
+  }
+
+  .esc input:hover{
+    background: rgba(0, 0, 0, 0.9);
+}
+</style>
+
+<!-- Toolbar -->
+<div class="container">
+  <form #f="ngForm" (ngSubmit)="save(f)" novalidate>
+    <input type="text" name="nametext" ngModel required #nametext="ngModel" />
+    <button>Ekle</button>
+  </form>
+  <h1 *ngFor="let text of text;"> - {{text.name}}
+    <input class="delete" type="button" value="Sil" (click)="deleteText(text.id)" />
+    <input class="delete" type="button" value="Güncelle" (click)="show(text.id,text.name)" />
+  </h1>
+  <div class="update-container" id="container-show" [style.visibility]="typ">
+    <div class="form">
+      <form #fr="ngForm" (ngSubmit)="updateText(fr)" novalidate >
+        <input type="text" class="common name-input" name="nametext1"  ngModel required #nametext1="ngModel">
+        <br>
+        <button class="common update-button">Tamam</button>
+      </form>
+    </div>
+    <div class="esc">
+      <input type="button" (click)="esc()" value="X">
+    </div>
+  </div>
+</div>
